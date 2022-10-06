@@ -113,3 +113,12 @@ The template is currently in `index.js`, and is defined as follows:
 ### Example Screenshot
 
 ![slack](https://user-images.githubusercontent.com/640433/194282481-d6e7bd1f-31c1-4c83-b532-cb5b87d1a677.png)
+
+### Considerations & Improvements
+
+Currently the script does not do signature verification. 
+
+### Documentation & References
+For more information on CircleCI Webhooks, please check the following page:
+
+> https://circleci.com/docs/webhooks
