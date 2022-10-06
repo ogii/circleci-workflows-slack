@@ -117,4 +117,3 @@ exports.handler = async (event, context) => {
     headers,
   };
 };
-
