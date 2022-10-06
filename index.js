@@ -9,18 +9,19 @@ exports.handler = async (event, context) => {
 
   const { name, status, created_at, stopped_at, url } = body.workflow;
   const { slug } = body.project;
-  const { branch } = body.pipeline.vcs;
+  const { branch, target_repository_url, revision } = body.pipeline.vcs;
+
   
   const setStatus = status => {
     switch(status) {
       case 'success':
         return 'Workflow Succeeded 🟢'
       case 'failed':
-        return 'Workflow Failed🔴'
+        return 'Workflow Failed 🔴'
       case 'canceled':
-        return 'Workflow Canceled✖'
+        return 'Workflow Canceled ✖'
       case 'unauthorized':
-        return 'Workflow Unauthorized⚠️️'
+        return 'Workflow Unauthorized ⚠️️'
       case 'error':
         return 'Workflow Error'
       default:
@@ -65,6 +66,10 @@ exports.handler = async (event, context) => {
 				{
 					"type": "mrkdwn",
 					"text": "*Finished:* ${stopped_at}"
+				},
+				{
+					"type": "mrkdwn",
+					"text": "*Commit:* <${target_repository_url}/commit/${revision}|${revision}>"
 				}
 			]
 		},
@@ -116,4 +121,4 @@ exports.handler = async (event, context) => {
     body,
     headers,
   };
-}; 
+};
